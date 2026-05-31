@@ -66,13 +66,13 @@ html, body { height: 100%; font-family: var(--font-body); font-size: 18px; color
   font-style: italic;
   letter-spacing: 0.06em;
   color: var(--white-soft);
-  margin-bottom: 0.6rem;
+  margin-top: 0.4rem;
   text-shadow: 0 1px 10px rgba(0,0,0,0.4);
 }
 
 .site-title {
   font-family: var(--font-body);
-  font-size: 3.2rem;
+  font-size: 6.4rem;
   font-weight: 300;
   font-style: normal;
   letter-spacing: 0.02em;
