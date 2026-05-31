@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maya & Nick — Guest Login</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <div class="bg">
+    <div style="display:flex; align-items:center; justify-content:center; min-height:100vh; padding: 3rem 1rem;">
+      <div class="card fade-in">
+        <h1 class="site-title">Maya & Nick</h1>
+        <p class="site-subtitle">Enter your name to continue</p>
+
+        <form id="login-form" novalidate>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="first_name">First Name</label>
+              <input type="text" id="first_name" placeholder="Jane" required>
+            </div>
+            <div class="form-group">
+              <label for="last_name">Last Name</label>
+              <input type="text" id="last_name" placeholder="Smith" required>
+            </div>
+          </div>
+          <button type="submit" class="btn" id="login-btn">Continue</button>
+          <p class="message error" id="login-message" style="display:none;">
+            We couldn't find your name. Please check the spelling or contact us.
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const client = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    const form = document.getElementById('login-form');
+    const loginBtn = document.getElementById('login-btn');
+    const messageEl = document.getElementById('login-message');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const first = document.getElementById('first_name').value.trim();
+      const last = document.getElementById('last_name').value.trim();
+      if (!first || !last) { messageEl.style.display = 'block'; return; }
+
+      loginBtn.disabled = true;
+      loginBtn.textContent = 'Checking...';
+      messageEl.style.display = 'none';
+
+      try {
+        const { data } = await client
+          .from('guests')
+          .select('id')
+          .ilike('first_name', first)
+          .ilike('last_name', last)
+          .maybeSingle();
+
+        if (data) {
+          window.location.href = 'pages/details.html';
+        } else {
+          messageEl.style.display = 'block';
+          loginBtn.disabled = false;
+          loginBtn.textContent = 'Continue';
+        }
+      } catch (err) {
+        messageEl.style.display = 'block';
+        loginBtn.disabled = false;
+        loginBtn.textContent = 'Continue';
+      }
+    });
+  </script>
+</body>
+</html>
