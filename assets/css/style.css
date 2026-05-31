@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap');
 
 :root {
   --white: #ffffff;
@@ -6,7 +6,7 @@
   --white-dim: rgba(255, 255, 255, 0.52);
   --white-faint: rgba(255, 255, 255, 0.18);
   --overlay: rgba(8, 6, 4, 0.42);
-  --font-display: 'Playfair Display', Georgia, serif;
+  --font-display: 'DM Serif Display', Georgia, serif;
   --font-body: 'Cormorant Garamond', Georgia, serif;
   --transition: all 0.3s ease;
 }
@@ -91,7 +91,7 @@ label {
   font-weight: 400;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--white-dim);
+  color: rgba(255, 255, 255, 0.88);
 }
 
 input, select {
@@ -101,7 +101,7 @@ input, select {
   color: var(--white-soft);
   background: transparent;
   border: none;
-  border-bottom: 1px solid var(--white-faint);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.35);
   padding: 0.5rem 0;
   outline: none;
   transition: var(--transition);
@@ -110,7 +110,7 @@ input, select {
 }
 
 input:focus, select:focus { border-bottom-color: rgba(255, 255, 255, 0.65); }
-input::placeholder { color: rgba(255, 255, 255, 0.18); font-style: italic; }
+input::placeholder { color: rgba(255, 255, 255, 0.48); font-style: italic; }
 
 select {
   cursor: pointer;
