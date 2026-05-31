@@ -66,7 +66,7 @@ html, body { height: 100%; font-family: var(--font-body); font-size: 18px; color
   font-style: italic;
   letter-spacing: 0.01em;
   color: var(--white);
-  line-height: 1.05;
+  line-height: 1.0;
   margin-bottom: 0.5rem;
   text-shadow: 0 2px 24px rgba(0,0,0,0.35);
 }
@@ -91,7 +91,7 @@ label {
   font-weight: 400;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.88);
+  color: var(--white);
 }
 
 input, select {
@@ -110,7 +110,7 @@ input, select {
 }
 
 input:focus, select:focus { border-bottom-color: rgba(255, 255, 255, 0.65); }
-input::placeholder { color: rgba(255, 255, 255, 0.48); font-style: italic; }
+input::placeholder { color: rgba(255, 255, 255, 0.65); font-style: italic; }
 
 select {
   cursor: pointer;
