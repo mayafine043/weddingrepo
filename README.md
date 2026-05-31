@@ -1,131 +1,79 @@
 # Maya & Nick — Wedding Website
 
-## 1. Configure Supabase credentials
-
-Open `config.js` and replace the placeholder values:
-
-```js
-const SUPABASE_URL = 'https://your-project.supabase.co';
-const SUPABASE_ANON_KEY = 'your-anon-key-here';
-```
-
-Never commit real credentials. Keep them only in `config.js` locally.
+Live site: https://mayafine043.github.io/weddingrepo/
 
 ---
 
-## 2. Create Supabase tables
+## 1. Credentials
 
-Go to your Supabase dashboard → SQL Editor → paste and run this:
+Your Supabase credentials are stored directly in `config.js` and committed to the repo. This is fine — the key is a publishable anon key, not a secret, and the database is locked down with RLS policies so guests can only submit data, not read anyone else's.
 
-```sql
--- Guests table
-create table guests (
-  id uuid primary key default gen_random_uuid(),
-  first_name text not null,
-  last_name text not null,
-  email text not null unique,
-  phone text not null,
-  created_at timestamptz default now()
-);
+---
 
--- Addresses table
-create table addresses (
-  id uuid primary key default gen_random_uuid(),
-  guest_id uuid references guests(id),
-  street_address text not null,
-  city text not null,
-  state text not null,
-  zip text not null,
-  created_at timestamptz default now()
-);
+## 2. Supabase tables
 
--- Submissions table (catch-all for all future forms)
-create table submissions (
-  id uuid primary key default gen_random_uuid(),
-  guest_id uuid references guests(id),
-  form_name text not null,
-  data jsonb not null,
-  created_at timestamptz default now()
-);
+Already created. Schema for reference:
+
+**guests** — one row per person
+- id, first_name, last_name, email (unique), phone, created_at
+
+**addresses** — linked to guests
+- id, guest_id, street_address, city, state, zip, created_at
+
+**submissions** — catch-all log for every form on the site
+- id, guest_id, form_name, data (JSON), created_at
+
+To view submissions: Supabase dashboard → Table Editor → select table.
+
+---
+
+## 3. Swap the background photo
+
+1. Add your photo to `assets/photos/` and name it `wedding-bg.jpg`
+2. Commit and push — it will automatically appear as the background
+
+To use a different filename, change this one line in `assets/css/style.css`:
+```css
+--bg-photo: url('../photos/wedding-bg.jpg');
 ```
 
 ---
 
-## 3. Set RLS policies
-
-In Supabase SQL Editor, run this after creating the tables:
-
-```sql
--- Enable RLS on all tables
-alter table guests enable row level security;
-alter table addresses enable row level security;
-alter table submissions enable row level security;
-
--- Guests: anyone can insert, only authenticated users can read
--- Exception: anonymous users can select email only (for duplicate check)
-create policy "anon insert guests" on guests for insert to anon with check (true);
-create policy "anon check email" on guests for select to anon using (true);
-create policy "auth read guests" on guests for select to authenticated using (true);
-
--- Addresses: anyone can insert, only authenticated users can read
-create policy "anon insert addresses" on addresses for insert to anon with check (true);
-create policy "auth read addresses" on addresses for select to authenticated using (true);
-
--- Submissions: anyone can insert, only authenticated users can read
-create policy "anon insert submissions" on submissions for insert to anon with check (true);
-create policy "auth read submissions" on submissions for select to authenticated using (true);
-```
-
----
-
-## 4. Swap the background photo
-
-1. Add your photo to `assets/photos/` — name it `wedding-bg.jpg`
-2. That's it. The CSS already points there via:
-   ```css
-   --bg-photo: url('../photos/wedding-bg.jpg');
-   ```
-   To use a different filename, change that one line in `assets/css/style.css`.
-
----
-
-## 5. Add a new page
+## 4. Add a new page
 
 1. Duplicate any file in `pages/` and rename it (e.g. `faq.html`)
-2. Add a link to the nav in every page file:
-   ```html
-   <a href="faq.html">FAQ</a>
-   ```
-3. Deploy (push to GitHub)
+2. Add a nav link in every page file:
+```html
+<a href="faq.html">FAQ</a>
+```
+3. Commit and push
 
 ---
 
-## 6. Add a new form to any page
+## 5. Add a new form
 
-Any new form just writes to the `submissions` table with a unique `form_name`:
+Any new form writes to the `submissions` table with a unique `form_name`:
 
 ```js
+const client = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
 await client.from('submissions').insert({
-  guest_id: null, // or a real guest id if known
+  guest_id: null,
   form_name: 'song_request',
-  data: { song: '...', artist: '...' }
+  data: { song: 'My Song', artist: 'The Artist' }
 });
 ```
 
-No schema changes needed.
+No schema changes needed — just use a new `form_name` string.
 
 ---
 
-## 7. Deploy to GitHub Pages
+## 6. Deploy changes
 
 ```bash
-git init
 git add .
-git commit -m "Initial wedding website"
-git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO.git
-git push -u origin main
+git commit -m "Your message here"
+git push
 ```
 
-Then in GitHub: Settings → Pages → Source: Deploy from branch → main → / (root) → Save.
-
-Your site will be live at: `https://YOUR_USERNAME.github.io/YOUR_REPO/`
+GitHub Pages rebuilds automatically. Changes are live in ~60 seconds.
