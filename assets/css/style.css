@@ -50,8 +50,8 @@ html, body { height: 100%; font-family: var(--font-body); font-size: 18px; color
 .card {
   position: relative;
   z-index: 1;
-  max-width: 520px;
-  width: 90%;
+  max-width: 600px;
+  width: 92%;
   margin: 0 auto;
 }
 
@@ -59,26 +59,26 @@ html, body { height: 100%; font-family: var(--font-body); font-size: 18px; color
   margin-bottom: 2.5rem;
 }
 
-.site-title {
-  font-family: var(--font-display);
-  font-size: 5rem;
-  font-weight: 400;
-  font-style: italic;
-  letter-spacing: 0.01em;
-  color: var(--white);
-  line-height: 1.0;
-  margin-bottom: 0.5rem;
-  text-shadow: 0 2px 24px rgba(0,0,0,0.35);
-}
-
 .site-subtitle {
   font-family: var(--font-body);
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 300;
   font-style: italic;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   color: var(--white-soft);
-  text-shadow: 0 1px 12px rgba(0,0,0,0.4);
+  margin-bottom: 0.6rem;
+  text-shadow: 0 1px 10px rgba(0,0,0,0.4);
+}
+
+.site-title {
+  font-family: var(--font-body);
+  font-size: 3.2rem;
+  font-weight: 300;
+  font-style: normal;
+  letter-spacing: 0.02em;
+  color: var(--white);
+  line-height: 1.15;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.3);
 }
 
 .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem 2rem; }
