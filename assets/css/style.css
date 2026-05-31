@@ -56,22 +56,13 @@ html, body { height: 100%; font-family: var(--font-body); font-size: 18px; color
 }
 
 .site-title {
-  font-family: var(--font-display);
-  font-size: 3rem;
-  font-weight: 400;
-  letter-spacing: 0.08em;
-  color: var(--white);
-  margin-bottom: 0.3rem;
-}
-
-.site-subtitle {
   font-family: var(--font-body);
-  font-size: 1rem;
-  font-weight: 300;
-  font-style: italic;
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
   color: var(--white-dim);
   margin-bottom: 3rem;
-  letter-spacing: 0.03em;
 }
 
 .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem 2rem; }
@@ -121,8 +112,8 @@ select option { background: #2a2320; color: var(--white-soft); }
   font-weight: 400;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: #1a1614;
-  background: var(--white);
+  color: var(--white);
+  background: #000000;
   border: none;
   padding: 1rem 2.8rem;
   cursor: pointer;
@@ -130,7 +121,7 @@ select option { background: #2a2320; color: var(--white-soft); }
   margin-top: 2.5rem;
 }
 
-.btn:hover:not(:disabled) { background: rgba(255, 255, 255, 0.82); }
+.btn:hover:not(:disabled) { background: #222222; }
 .btn:disabled { opacity: 0.4; cursor: not-allowed; }
 
 .message { font-family: var(--font-body); font-size: 1rem; font-style: italic; margin-top: 1.25rem; color: var(--white-dim); }
