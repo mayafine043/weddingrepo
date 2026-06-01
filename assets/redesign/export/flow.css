@@ -1,0 +1,162 @@
+/* ============================================================
+   Maya & Nick — Save the Date flow (3 screens)
+   Built on Option 3's visual language (frosted, Cormorant,
+   moody château, dusty-rose accent).
+   ============================================================ */
+
+.flow{
+  --rose:#caa6a0;
+  --mustard:#d4a43f;
+  --line-dark:rgba(239,233,218,.30);
+  position:relative; width:100%; height:100%; overflow:hidden;
+  background:#0a0f0b; color:var(--cream);
+  font-family:var(--serif-text);
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+.flow .bg{
+  position:absolute; inset:0;
+  background:url('assets/chateau-blur.jpg') center/cover no-repeat;
+}
+.flow .scrim{ position:absolute; inset:0; }
+
+/* shared field (matches Option 3) */
+.flow .fld{ position:relative; }
+.flow .fld label{
+  font-family:var(--serif-text); text-transform:uppercase;
+  letter-spacing:.24em; font-size:13px; font-weight:500; line-height:1;
+  color:var(--cream); opacity:.9; display:block; margin-bottom:2px;
+}
+.flow .fld input{
+  width:100%; border:0; background:transparent; outline:none;
+  font-family:var(--serif-text); font-size:23px; font-style:italic;
+  color:var(--cream); padding:6px 0 12px;
+}
+.flow .fld input::placeholder{ color:rgba(239,233,218,.42); }
+.flow .fld .rule{ height:1px; width:100%; background:var(--line-dark);
+  transition:background .4s ease; }
+.flow .fld:focus-within .rule{ background:var(--mustard); }
+
+/* shared button (ghost -> fill, matches Option 3) */
+.flow .btn{
+  background:transparent; color:var(--cream);
+  border:1px solid var(--cream); padding:22px 28px;
+  font-family:var(--serif-text); text-transform:uppercase;
+  letter-spacing:.3em; font-size:15px; font-weight:600; cursor:pointer;
+  position:relative; overflow:hidden;
+}
+.flow .btn span{ position:relative; z-index:1; transition:color .4s ease; }
+.flow .btn::after{ content:''; position:absolute; inset:0; background:var(--cream);
+  transform:translateX(-101%); transition:transform .45s cubic-bezier(.2,.7,.2,1); }
+.flow .btn:hover::after{ transform:translateX(0); }
+.flow .btn:hover span{ color:var(--ink); }
+
+/* progress dots shared across screens */
+.flow .dots{ position:absolute; left:50%; transform:translateX(-50%);
+  bottom:38px; display:flex; gap:12px; z-index:5; }
+.flow .dots i{ width:7px; height:7px; border:1px solid var(--line-dark);
+  border-radius:50%; transform:rotate(45deg); }
+.flow .dots i.on{ background:var(--mustard); border-color:var(--mustard); }
+
+/* ===== SCREEN 1 — WELCOME / GUEST LOGIN ===== */
+.s1 .bg{
+  background:url('assets/welcome-bg.png') center 38%/cover no-repeat;
+}
+.s1 .scrim{
+  background:
+    linear-gradient(180deg, rgba(28,16,10,.58) 0%, rgba(24,14,9,.42) 38%, rgba(18,11,7,.74) 100%),
+    radial-gradient(120% 75% at 50% 46%, rgba(0,0,0,0) 30%, rgba(18,11,7,.5) 100%);
+}
+.s1 .stage{ position:relative; z-index:2; height:100%;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center; padding:60px; }
+.s1 .ribbon{ position:absolute; top:40px; left:0; right:0; text-align:center;
+  font-family:var(--serif-text); text-transform:uppercase; letter-spacing:.34em;
+  font-size:13px; color:var(--cream-dim); }
+.s1 .eyebrow{ font-style:italic; font-size:21px; color:var(--cream-dim); margin:0 0 16px; }
+.s1 .names{ font-family:var(--serif-display); font-weight:500; font-size:62px;
+  line-height:1.0; margin:0; white-space:nowrap; }
+.s1 .names .amp{ font-style:italic; font-weight:400; color:var(--mustard); }
+.s1 .hair{ width:64px; height:1px; background:var(--line-dark); margin:34px 0 30px; }
+.s1 .welcome{ font-style:italic; font-size:20px; color:var(--cream); opacity:.86;
+  max-width:440px; margin:0 0 40px; line-height:1.4; }
+.s1 .login{ display:grid; grid-template-columns:1fr 1fr; gap:26px 34px;
+  width:min(560px,100%); text-align:left; }
+.s1 .login .btn{ grid-column:span 2; margin-top:14px; }
+
+/* ===== SCREEN 2 — ADDRESS (rendered by Option3 component) ===== */
+.step2{ position:relative; width:100%; height:100%; }
+.step2 .dots{ position:absolute; left:50%; transform:translateX(-50%);
+  bottom:30px; display:flex; gap:12px; z-index:6; }
+.step2 .dots i{ width:7px; height:7px; border:1px solid rgba(239,233,218,.3);
+  border-radius:50%; transform:rotate(45deg); }
+.step2 .dots i.on{ background:#d4a43f; border-color:#d4a43f; }
+/* full-bleed château photo, scoped to the flow only */
+.step2 .opt3 .bg{
+  background:url('assets/chateau-bright.jpg') center 38%/cover no-repeat;
+}
+.step2 .opt3 .scrim{
+  background:
+    linear-gradient(90deg, rgba(8,12,9,.88) 0%, rgba(8,12,9,.62) 40%, rgba(8,12,9,.42) 100%),
+    linear-gradient(180deg, rgba(7,12,8,.55), rgba(7,12,8,.34) 40%, rgba(7,12,8,.72));
+}
+/* mustard ampersand */
+.step2 .opt3 .names .amp{ color:var(--mustard); }
+/* size names so each line fits the column cleanly (two lines) */
+.step2 .opt3 .names{ font-size:84px; }
+.step2 .opt3 .names .l2{ padding-left:.3em; }
+
+/* ===== SCREEN 3 — SAVE THE DATE ===== */
+.s3{ background:#0b110c; }
+.s3 .bg{
+  background:url('assets/chateau-bright.jpg') center 38%/cover no-repeat;
+}
+.s3 .scrim{
+  background:
+    linear-gradient(180deg, rgba(7,12,8,.72), rgba(7,12,8,.5) 40%, rgba(7,12,8,.84)),
+    radial-gradient(120% 92% at 50% 42%, rgba(8,12,9,.34), rgba(8,12,9,.72) 76%);
+}
+/* layered line drawing — large, bleeding, drifting */
+.s3 .line-art{
+  position:absolute; z-index:2; pointer-events:none;
+  top:-8%; left:50%; width:120%;
+  transform:translateX(-50%);
+  background:url('assets/chateau-line-cream.png') center top/contain no-repeat;
+  aspect-ratio:560/300; opacity:.62;
+  mix-blend-mode:screen;
+  filter:drop-shadow(0 20px 60px rgba(0,0,0,.4));
+  animation:s3drift 26s ease-in-out infinite alternate;
+}
+.s3 .line-art.echo{
+  width:70%; top:0; opacity:.22; filter:blur(2px);
+  animation-duration:34s; animation-direction:alternate-reverse;
+}
+@keyframes s3drift{
+  from{ transform:translateX(-50%) translateY(0) scale(1); }
+  to{ transform:translateX(-50%) translateY(-2.2%) scale(1.05); }
+}
+.s3 .content{ position:relative; z-index:3; height:100%;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center; padding:60px; }
+/* soft halo keeps text legible over the drawing */
+.s3 .content::before{
+  content:''; position:absolute; z-index:-1;
+  left:50%; top:50%; transform:translate(-50%,-50%);
+  width:880px; height:640px;
+  background:radial-gradient(closest-side, rgba(8,12,9,.74), rgba(8,12,9,.32) 58%, rgba(8,12,9,0) 78%);
+}
+.s3 .std{ font-family:var(--serif-display); font-weight:500;
+  text-transform:uppercase; letter-spacing:.04em; white-space:nowrap;
+  font-size:104px; line-height:.9; margin:0 0 16px; }
+.s3 .for{ font-style:italic; font-size:28px; color:var(--cream); opacity:.92; margin:0 0 10px; }
+.s3 .couple{ font-family:var(--serif-display); font-weight:500;
+  text-transform:uppercase; letter-spacing:.05em; font-size:44px; margin:0; white-space:nowrap; }
+.s3 .couple .amp{ font-style:italic; text-transform:none; letter-spacing:0; color:var(--mustard); }
+.s3 .meta{ margin-top:42px; display:flex; flex-direction:column; align-items:center; gap:18px; }
+.s3 .date{ font-style:italic; font-size:26px; color:var(--cream); white-space:nowrap; }
+.s3 .div{ width:120px; height:1px; background:var(--line-dark); }
+.s3 .place{ font-style:italic; font-size:30px; color:var(--cream);
+  letter-spacing:.02em; white-space:nowrap; }
+
+/* mobile tweaks (if used) */
+.flow.mode-mobile .s1 .names,
+.flow.mode-mobile .names{ font-size:52px; }

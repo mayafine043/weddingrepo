@@ -1,0 +1,131 @@
+/* ============================================================
+   Save the Date — Page 3, three layout directions
+   All share the same château photo background.
+   ============================================================ */
+
+.sdopt{
+  --mustard:#d4a43f;
+  --line:rgba(239,233,218,.34);
+  position:relative; width:100%; height:100%; overflow:hidden;
+  background:#0b110c; color:var(--cream);
+  font-family:var(--serif-text);
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+.sdopt .bg{
+  position:absolute; inset:0;
+  background:url('assets/chateau-bright.jpg') center 38%/cover no-repeat;
+}
+.sdopt .scrim{ position:absolute; inset:0; }
+
+/* ============================================================
+   OPTION 1 — REFINED (improved spacing, prominent date)
+   ============================================================ */
+.sdA .scrim{
+  background:
+    linear-gradient(180deg, rgba(7,12,8,.72), rgba(7,12,8,.48) 40%, rgba(7,12,8,.84)),
+    radial-gradient(120% 92% at 50% 44%, rgba(8,12,9,.30), rgba(8,12,9,.7) 78%);
+}
+.sdA .wrap{ position:relative; z-index:2; height:100%;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center; padding:80px; }
+.sdA .std{ font-family:var(--serif-display); font-weight:500;
+  text-transform:uppercase; letter-spacing:.05em; white-space:nowrap;
+  font-size:102px; line-height:.9; margin:0; }
+.sdA .forline{ font-style:italic; font-size:27px; color:var(--cream); opacity:.9;
+  margin:30px 0 14px; }
+.sdA .couple{ font-family:var(--serif-display); font-weight:500;
+  text-transform:uppercase; letter-spacing:.06em; font-size:40px; margin:0; white-space:nowrap; }
+.sdA .couple .amp{ font-style:italic; text-transform:none; letter-spacing:0; color:var(--mustard); }
+.sdA .datebox{ margin-top:52px; display:inline-flex; align-items:center; gap:20px;
+  border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  padding:20px 40px; }
+.sdA .datebox .dia{ width:7px; height:7px; background:var(--mustard); transform:rotate(45deg); }
+.sdA .datebox .d{ font-style:italic; font-size:42px; letter-spacing:.01em;
+  color:var(--cream); white-space:nowrap; }
+.sdA .place{ margin-top:32px; font-style:italic; font-size:28px; color:var(--cream);
+  white-space:nowrap; }
+
+/* ============================================================
+   OPTION 2 — EDITORIAL (creative spacing, framed, date-led)
+   ============================================================ */
+.sdB .scrim{
+  background:
+    linear-gradient(180deg, rgba(7,12,8,.66), rgba(7,12,8,.42) 42%, rgba(7,12,8,.8)),
+    radial-gradient(130% 100% at 50% 46%, rgba(8,12,9,.22), rgba(8,12,9,.66) 80%);
+}
+.sdB .frame{ position:absolute; inset:46px; border:1px solid var(--line); z-index:2;
+  pointer-events:none; }
+.sdB .wrap{ position:relative; z-index:3; height:100%;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center; padding:110px; }
+.sdB .eyebrow{ font-family:var(--serif-text); text-transform:uppercase;
+  letter-spacing:.4em; font-size:16px; color:var(--cream); opacity:.82; margin:0; white-space:nowrap; }
+.sdB .couple{ font-family:var(--serif-display); font-weight:500;
+  text-transform:uppercase; letter-spacing:.09em; font-size:27px;
+  margin:18px 0 0; white-space:nowrap; }
+.sdB .couple .amp{ color:var(--mustard); font-style:italic; text-transform:none; letter-spacing:0; }
+.sdB .hero{ font-family:var(--serif-display); font-style:italic; font-weight:500;
+  font-size:140px; line-height:.96; margin:40px 0; white-space:nowrap; }
+.sdB .rule{ width:64px; height:1px; background:var(--line); margin:0 0 40px; }
+.sdB .date{ font-family:var(--serif-text); text-transform:uppercase;
+  letter-spacing:.32em; font-size:26px; color:var(--cream); white-space:nowrap; margin:0; }
+.sdB .place{ font-style:italic; font-size:27px; color:var(--cream); opacity:.92;
+  margin:22px 0 0; white-space:nowrap; }
+
+/* ============================================================
+   OPTION 3 — POSTER (bold, playful departure)
+   ============================================================ */
+.sdC .scrim{
+  background:
+    linear-gradient(180deg, rgba(7,12,8,.78), rgba(7,12,8,.52) 45%, rgba(7,12,8,.86)),
+    radial-gradient(120% 100% at 50% 40%, rgba(8,12,9,.3), rgba(8,12,9,.72) 82%);
+}
+/* giant outlined year watermark */
+.sdC .year{
+  position:absolute; z-index:2; left:50%; top:48%;
+  transform:translate(-50%,-50%) rotate(-7deg);
+  font-family:var(--serif-display); font-weight:600; font-size:560px; line-height:1;
+  color:transparent; -webkit-text-stroke:1.5px rgba(239,233,218,.16);
+  white-space:nowrap; pointer-events:none; letter-spacing:.02em;
+}
+.sdC .stage{ position:relative; z-index:3; height:100%; padding:84px 96px; }
+
+/* big stacked headline, offset */
+.sdC .headline{ position:absolute; left:96px; top:120px;
+  font-family:var(--serif-display); font-weight:500; text-transform:uppercase;
+  line-height:.82; margin:0; }
+.sdC .headline .l1{ display:block; font-size:128px; letter-spacing:.02em; }
+.sdC .headline .l2{ display:block; font-size:128px; letter-spacing:.02em; padding-left:1.6em; }
+.sdC .headline .the{ font-family:var(--serif-display); font-style:italic; font-weight:400;
+  text-transform:none; color:var(--mustard); font-size:74px; letter-spacing:0;
+  display:inline-block; transform:translateY(-.12em); padding:0 .12em; }
+
+/* names + place, lower-left block */
+.sdC .lower{ position:absolute; left:98px; bottom:118px; }
+.sdC .couple{ font-family:var(--serif-display); font-weight:500; text-transform:uppercase;
+  letter-spacing:.05em; font-size:50px; line-height:1.02; margin:0; white-space:nowrap; }
+.sdC .couple .amp{ color:var(--mustard); font-style:italic; text-transform:none; }
+.sdC .place{ font-style:italic; font-size:26px; color:var(--cream); opacity:.92; margin:18px 0 0; }
+
+/* circular rotating seal, lower-right */
+.sdC .seal{ position:absolute; right:100px; bottom:100px; width:560px; height:560px; z-index:4; }
+.sdC .seal .ring{ width:100%; height:100%; animation:sealspin 48s linear infinite; }
+.sdC .seal text{ fill:var(--cream); font-family:var(--serif-text);
+  text-transform:uppercase; letter-spacing:.26em; font-size:11.5px; }
+.sdC .seal .core{ position:absolute; inset:0; display:flex; flex-direction:column;
+  align-items:center; justify-content:center; text-align:center; }
+.sdC .seal .core .big{ font-family:var(--serif-display); font-weight:500;
+  font-size:128px; line-height:.9; color:var(--cream); white-space:nowrap;
+  font-variant-numeric:lining-nums tabular-nums; letter-spacing:.02em; }
+.sdC .seal .core .mo{ font-style:italic; font-size:46px; color:var(--cream); opacity:.9; margin-top:4px; }
+.sdC .seal .core .sm{ font-family:var(--serif-text); text-transform:uppercase;
+  letter-spacing:.34em; font-size:34px; color:var(--mustard); margin-top:14px;
+  font-variant-numeric:lining-nums tabular-nums; }
+@keyframes sealspin{ to{ transform:rotate(360deg); } }
+
+/* progress dots (when the poster is used as a flow screen) */
+.sdopt .dots{ position:absolute; left:50%; transform:translateX(-50%);
+  bottom:34px; display:flex; gap:12px; z-index:6; }
+.sdopt .dots i{ width:7px; height:7px; border:1px solid rgba(239,233,218,.3);
+  border-radius:50%; transform:rotate(45deg); }
+.sdopt .dots i.on{ background:var(--mustard); border-color:var(--mustard); }

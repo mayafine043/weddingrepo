@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Maya &amp; Nick — Guest Flow (Play)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="flow.css" />
+<link rel="stylesheet" href="savedate-options.css" />
+<style>
+  html,body{ margin:0; height:100%; background:#000; overflow:hidden; }
+  /* full-viewport background layer — always covers, never letterboxes */
+  #playbg{ position:fixed; inset:0; z-index:0; }
+  #playbg::before{ content:''; position:absolute; inset:0;
+    background-size:cover; background-position:center 38%; background-repeat:no-repeat; }
+  #playbg::after{ content:''; position:absolute; inset:0; }
+  #playbg.b1::before{ background-image:url('assets/welcome-bg.png'); }
+  #playbg.b1::after{ background:
+    linear-gradient(180deg, rgba(28,16,10,.58) 0%, rgba(24,14,9,.42) 38%, rgba(18,11,7,.74) 100%),
+    radial-gradient(120% 75% at 50% 46%, rgba(0,0,0,0) 30%, rgba(18,11,7,.5) 100%); }
+  #playbg.b2::before{ background-image:url('assets/chateau-bright.jpg'); }
+  #playbg.b2::after{ background:
+    linear-gradient(180deg, rgba(7,12,8,.4), rgba(7,12,8,.2) 42%, rgba(7,12,8,.58)),
+    radial-gradient(130% 105% at 50% 40%, rgba(8,12,9,0), rgba(8,12,9,.46) 86%); }
+  #playbg.b3::before{ background-image:url('assets/chateau-bright.jpg'); }
+  #playbg.b3::after{ background:
+    linear-gradient(180deg, rgba(7,12,8,.6), rgba(7,12,8,.4) 40%, rgba(7,12,8,.76)),
+    radial-gradient(120% 95% at 50% 42%, rgba(8,12,9,.16), rgba(8,12,9,.62) 80%); }
+
+  #viewport{ position:fixed; inset:0; background:transparent; display:flex;
+    align-items:center; justify-content:center; z-index:1; }
+  #scaler{ width:1440px; height:1024px; flex:none; transform-origin:center center; position:relative; }
+  #holder{ position:absolute; inset:0; transition:transform 1.05s cubic-bezier(.5,0,.2,1), filter 1.05s ease; }
+  /* in the player, each screen's own bg/scrim is hidden — the #playbg layer covers full-bleed */
+  #holder .bg, #holder .scrim{ display:none !important; }
+  #holder .flow, #holder .opt, #holder .sdopt{ background-color:transparent !important; }
+  #holder.zoom-out{ transform:scale(1.09); filter:brightness(.7); }
+  #holder.zoom-in{ transform:scale(1.045); }
+  #cover{ position:fixed; inset:0; background:#080a08; pointer-events:none;
+    opacity:0; transition:opacity .92s cubic-bezier(.6,0,.3,1); z-index:50; }
+  #cover.on{ opacity:1; }
+  /* restart hint */
+  .restart{ position:fixed; right:22px; bottom:18px; z-index:60;
+    font-family:'EB Garamond',Georgia,serif; font-style:italic; font-size:15px;
+    color:rgba(239,233,218,.6); letter-spacing:.04em; cursor:pointer;
+    background:none; border:0; transition:color .3s ease; }
+  .restart:hover{ color:rgba(239,233,218,.95); }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" src="options.jsx"></script>
+<script type="text/babel" src="flow.jsx"></script>
+
+<script type="text/babel">
+const { useState, useEffect, useRef, useCallback } = React;
+const SCREENS = [Screen1Welcome, Screen2Address, Screen3SaveTheDate];
+
+function Player(){
+  const [idx, setIdx] = useState(() => {
+    const v = parseInt(localStorage.getItem('flow-idx')||'0',10);
+    return isNaN(v) ? 0 : Math.max(0, Math.min(2, v));
+  });
+  const [cover, setCover] = useState(false);
+  const [zoom, setZoom] = useState('');        // '', 'zoom-out', 'zoom-in'
+  const busy = useRef(false);
+
+  // fit 1440x1024 to viewport
+  useEffect(() => {
+    const fit = () => {
+      const s = Math.min(window.innerWidth/1440, window.innerHeight/1024);
+      const el = document.getElementById('scaler');
+      if(el) el.style.transform = `scale(${s})`;
+    };
+    fit(); window.addEventListener('resize', fit);
+    return () => window.removeEventListener('resize', fit);
+  }, []);
+
+  useEffect(() => { localStorage.setItem('flow-idx', String(idx)); }, [idx]);
+
+  const go = useCallback((next) => {
+    if(busy.current) return;
+    if(next < 0 || next > 2 || next === idx) return;
+    busy.current = true;
+    // 1) dramatic fade to black + slow zoom of outgoing screen
+    setZoom('zoom-out');
+    setCover(true);
+    setTimeout(() => {
+      // 2) swap content while fully black, pre-set incoming zoom
+      setIdx(next);
+      setZoom('zoom-in');
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        // 3) reveal + settle incoming to rest
+        setCover(false);
+        setZoom('');
+        setTimeout(() => { busy.current = false; }, 1100);
+      }));
+    }, 940);
+  }, [idx]);
+
+  const onClickCapture = (e) => {
+    if(e.target.closest('button.restart')) return;
+    if(e.target.closest('button')) { e.preventDefault(); go(idx + 1); }
+  };
+  const onSubmit = (e) => { e.preventDefault(); };
+
+  const Current = SCREENS[idx];
+  return (
+    <React.Fragment>
+      <div id="playbg" className={'b' + (idx + 1)}></div>
+      <div id="viewport" onClickCapture={onClickCapture} onSubmit={onSubmit}>
+        <div id="scaler">
+          <div id="holder" className={zoom}>
+            <Current key={idx} />
+          </div>
+        </div>
+      </div>
+      <div id="cover" className={cover ? 'on' : ''}></div>
+      {idx > 0 && <button className="restart" onClick={() => go(0)}>Restart ↺</button>}
+    </React.Fragment>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<Player />);
+</script>
+</body>
+</html>
