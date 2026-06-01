@@ -65,7 +65,8 @@
           .maybeSingle();
 
         if (data) {
-          window.location.href = 'pages/details.html';
+          sessionStorage.setItem('guestLoggedIn', 'true');
+          window.location.href = 'address.html';
         } else {
           messageEl.style.display = 'block';
           loginBtn.disabled = false;
