@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maya & Nick — Save the Date</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+</head>
+<body class="save-date-redesign">
+  <div class="sd-screen">
+    <div class="sd-bg"></div>
+    <div class="sd-scrim"></div>
+    <div class="sd-year">2027</div>
+    <div class="sd-stage">
+      <h1 class="sd-headline">
+        <span class="sd-line">Save</span>
+        <span class="sd-line sd-indent"><span class="sd-the">the</span></span>
+        <span class="sd-line">Date</span>
+      </h1>
+
+      <div class="sd-lower">
+        <p class="sd-couple">Maya Fine <span class="amp">&amp;</span><br>Nick Figueroa</p>
+        <p class="sd-place">Château de Thauvenay, Sancerre France</p>
+      </div>
+
+      <div class="sd-seal">
+        <svg class="sd-ring" viewBox="0 0 260 260" aria-hidden="true">
+          <defs>
+            <path id="sd-circle" d="M130,130 m-98,0 a98,98 0 1,1 196,0 a98,98 0 1,1 -196,0"></path>
+          </defs>
+          <text>
+            <textPath href="#sd-circle" startOffset="0">
+              · Save the Date · Maya &amp; Nick · Sancerre France ·
+            </textPath>
+          </text>
+        </svg>
+        <div class="sd-core">
+          <span class="sd-big">8–11</span>
+          <span class="sd-mo">July</span>
+          <span class="sd-sm">2027</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    if (sessionStorage.getItem('guestSubmittedAddress') !== 'true') {
+      window.location.replace('index.html');
+    }
+  </script>
+</body>
+</html>

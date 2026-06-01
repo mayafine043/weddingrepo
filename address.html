@@ -190,8 +190,8 @@
           data: payload
         });
 
-        formContainer.style.display = 'none';
-        successContainer.style.display = 'block';
+        sessionStorage.setItem('guestSubmittedAddress', 'true');
+        window.location.href = 'save-the-date.html';
 
       } catch (err) {
         console.error(err);
