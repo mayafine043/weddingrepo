@@ -170,7 +170,11 @@
         'Please let me know what you need from me.\n\n' +
         'Thank you'
       );
-      window.location.href = 'mailto:mayafine043@gmail.com?subject=' + subj + '&body=' + body;
+      const a = document.createElement('a');
+      a.href = 'mailto:mayafine043@gmail.com?subject=' + subj + '&body=' + body;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
     });
   </script>
 </body>
