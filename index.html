@@ -75,7 +75,7 @@
           // Check for existing address (returning guest)
           const { data: addr } = await client
             .from('addresses')
-            .select('street_address, city, state, zip, submitted_at, created_at')
+            .select('street_address, city, state, zip, created_at')
             .eq('guest_id', guest.id)
             .maybeSingle();
 
@@ -89,7 +89,7 @@
               city: addr.city,
               state: addr.state,
               zip: addr.zip,
-              submitted_at: addr.submitted_at || addr.created_at
+              submitted_at: addr.created_at
             }));
             window.location.href = 'confirmed.html';
           } else {
