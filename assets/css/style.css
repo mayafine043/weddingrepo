@@ -817,10 +817,11 @@ footer {
 
 .save-date-redesign .sd-seal {
   position: absolute;
-  right: 100px;
-  bottom: 100px;
-  width: 560px;
-  height: 560px;
+  right: 80px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 420px;
+  height: 420px;
 }
 
 .save-date-redesign .sd-ring {
@@ -849,7 +850,7 @@ footer {
 
 .save-date-redesign .sd-big {
   font-family: var(--font-display);
-  font-size: 128px;
+  font-size: 96px;
   font-weight: 500;
   line-height: 0.9;
   letter-spacing: 0.02em;
@@ -860,16 +861,16 @@ footer {
 
 .save-date-redesign .sd-mo {
   margin-top: 4px;
-  font-size: 46px;
+  font-size: 36px;
   font-style: italic;
   color: var(--cream);
   opacity: 0.9;
 }
 
 .save-date-redesign .sd-sm {
-  margin-top: 14px;
+  margin-top: 10px;
   font-family: var(--font-body);
-  font-size: 34px;
+  font-size: 26px;
   color: var(--mustard);
   letter-spacing: 0.34em;
   text-transform: uppercase;
