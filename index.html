@@ -75,21 +75,27 @@
         }
 
         // Step 2 — check for an existing address submission
-        const { data: guest } = await client
+        const { data: guest, error: guestErr } = await client
           .from('guests')
           .select('id, first_name, last_name, email, phone')
           .ilike('first_name', first)
           .ilike('last_name', last)
           .maybeSingle();
 
+        if (guestErr) console.error('guests query error:', guestErr);
+        console.log('guests result:', guest);
+
         sessionStorage.setItem('guestLoggedIn', 'true');
 
         if (guest) {
-          const { data: addr } = await client
+          const { data: addr, error: addrErr } = await client
             .from('addresses')
             .select('street_address, city, state, zip, created_at')
             .eq('guest_id', guest.id)
             .maybeSingle();
+
+          if (addrErr) console.error('addresses query error:', addrErr);
+          console.log('addresses result:', addr);
 
           if (addr) {
             sessionStorage.setItem('guestHasAddress', 'true');
