@@ -51,19 +51,30 @@
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const first = document.getElementById('first_name').value.trim();
-      const last = document.getElementById('last_name').value.trim();
-
-      // Testing mode — skip validation, go straight to address page
-      sessionStorage.setItem('guestLoggedIn', 'true');
-      window.location.href = 'address.html';
-      return;
+      const last  = document.getElementById('last_name').value.trim();
+      if (!first || !last) return;
 
       loginBtn.disabled = true;
       loginBtn.textContent = 'Checking...';
       messageEl.style.display = 'none';
 
       try {
-        // Look up guest by name
+        // Step 1 — access control: name must be on the guest list
+        const { data: listed } = await client
+          .from('guest_list')
+          .select('id')
+          .ilike('first_name', first)
+          .ilike('last_name', last)
+          .maybeSingle();
+
+        if (!listed) {
+          messageEl.style.display = 'block';
+          loginBtn.disabled = false;
+          loginBtn.textContent = 'Enter';
+          return;
+        }
+
+        // Step 2 — check for an existing address submission
         const { data: guest } = await client
           .from('guests')
           .select('id, first_name, last_name, email, phone')
@@ -71,38 +82,37 @@
           .ilike('last_name', last)
           .maybeSingle();
 
+        sessionStorage.setItem('guestLoggedIn', 'true');
+
         if (guest) {
-          // Check for existing address (returning guest)
           const { data: addr } = await client
             .from('addresses')
             .select('street_address, city, state, zip, created_at')
             .eq('guest_id', guest.id)
             .maybeSingle();
 
-          sessionStorage.setItem('guestLoggedIn', 'true');
-
           if (addr) {
             sessionStorage.setItem('guestHasAddress', 'true');
             sessionStorage.setItem('guestData', JSON.stringify({
               ...guest,
               street_address: addr.street_address,
-              city: addr.city,
-              state: addr.state,
-              zip: addr.zip,
-              submitted_at: addr.created_at
+              city:           addr.city,
+              state:          addr.state,
+              zip:            addr.zip,
+              submitted_at:   addr.created_at
             }));
             window.location.href = 'confirmed.html';
-          } else {
-            sessionStorage.setItem('guestHasAddress', 'false');
-            sessionStorage.setItem('guestData', JSON.stringify(guest));
-            window.location.href = 'address.html';
+            return;
           }
-        } else {
-          messageEl.style.display = 'block';
-          loginBtn.disabled = false;
-          loginBtn.textContent = 'Enter';
         }
+
+        // New guest — no address on file yet
+        sessionStorage.setItem('guestHasAddress', 'false');
+        if (guest) sessionStorage.setItem('guestData', JSON.stringify(guest));
+        window.location.href = 'address.html';
+
       } catch (err) {
+        console.error(err);
         messageEl.style.display = 'block';
         loginBtn.disabled = false;
         loginBtn.textContent = 'Enter';
