@@ -799,7 +799,7 @@ footer {
   position: absolute;
   left: 50%;
   top: 48%;
-  transform: translate(-50%, -50%) rotate(-7deg);
+  transform: translate(-50%, -50%) rotate(-7deg) scale(0.9);
   font-family: var(--font-display);
   font-size: 440px;
   font-weight: 600;
@@ -816,6 +816,8 @@ footer {
   z-index: 2;
   height: 100vh;
   padding: 84px 96px;
+  transform: scale(0.9);
+  transform-origin: center center;
 }
 
 .save-date-redesign .sd-headline {
