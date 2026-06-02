@@ -488,7 +488,7 @@ footer {
 }
 
 @media (max-width: 480px) {
-  .conf-stamp-wrap { display: none; }
+  .conf-stamp-wrap { display: block; }
   .home-redesign .confirmed-field {
     font-size: 19px;
     padding: 5px 0 10px;
@@ -1214,7 +1214,7 @@ footer {
     gap: 0;
   }
   .home-redesign .site-header {
-    padding: 64px 30px 0;
+    padding: 96px 30px 0;
   }
   .home-redesign .site-title {
     font-size: 44px;
@@ -1230,7 +1230,7 @@ footer {
     margin-top: 18px;
   }
   .home-redesign .form-shade {
-    padding: 52px 30px 40px;
+    padding: 80px 30px 40px;
   }
   .home-redesign .form-grid {
     gap: 22px 18px;
@@ -1245,7 +1245,7 @@ footer {
     letter-spacing: 0.22em;
   }
   .home-redesign .btn {
-    margin-top: 8px;
+    margin-top: 40px;
     padding: 18px;
     font-size: 13px;
     letter-spacing: 0.26em;
