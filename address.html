@@ -49,23 +49,31 @@
               </div>
 
               <div class="form-group">
-                <label for="state">State</label>
-                <select id="state" name="state" required>
-                  <option value="" disabled selected>Select</option>
-                  <option>AL</option><option>AK</option><option>AZ</option><option>AR</option>
-                  <option>CA</option><option>CO</option><option>CT</option><option>DE</option>
-                  <option>FL</option><option>GA</option><option>HI</option><option>ID</option>
-                  <option>IL</option><option>IN</option><option>IA</option><option>KS</option>
-                  <option>KY</option><option>LA</option><option>ME</option><option>MD</option>
-                  <option>MA</option><option>MI</option><option>MN</option><option>MS</option>
-                  <option>MO</option><option>MT</option><option>NE</option><option>NV</option>
-                  <option>NH</option><option>NJ</option><option>NM</option><option>NY</option>
-                  <option>NC</option><option>ND</option><option>OH</option><option>OK</option>
-                  <option>OR</option><option>PA</option><option>RI</option><option>SC</option>
-                  <option>SD</option><option>TN</option><option>TX</option><option>UT</option>
-                  <option>VT</option><option>VA</option><option>WA</option><option>WV</option>
-                  <option>WI</option><option>WY</option>
-                </select>
+                <label>State</label>
+                <div class="custom-select" id="state-select">
+                  <div class="custom-select__trigger" tabindex="0" role="combobox" aria-expanded="false" aria-haspopup="listbox">
+                    <span class="custom-select__value">Select</span>
+                    <svg width="10" height="7" viewBox="0 0 10 7" fill="none" aria-hidden="true">
+                      <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </div>
+                  <div class="custom-select__panel" role="listbox">
+                    <div class="custom-select__opt" data-value="AL">AL</div><div class="custom-select__opt" data-value="AK">AK</div><div class="custom-select__opt" data-value="AZ">AZ</div><div class="custom-select__opt" data-value="AR">AR</div>
+                    <div class="custom-select__opt" data-value="CA">CA</div><div class="custom-select__opt" data-value="CO">CO</div><div class="custom-select__opt" data-value="CT">CT</div><div class="custom-select__opt" data-value="DE">DE</div>
+                    <div class="custom-select__opt" data-value="FL">FL</div><div class="custom-select__opt" data-value="GA">GA</div><div class="custom-select__opt" data-value="HI">HI</div><div class="custom-select__opt" data-value="ID">ID</div>
+                    <div class="custom-select__opt" data-value="IL">IL</div><div class="custom-select__opt" data-value="IN">IN</div><div class="custom-select__opt" data-value="IA">IA</div><div class="custom-select__opt" data-value="KS">KS</div>
+                    <div class="custom-select__opt" data-value="KY">KY</div><div class="custom-select__opt" data-value="LA">LA</div><div class="custom-select__opt" data-value="ME">ME</div><div class="custom-select__opt" data-value="MD">MD</div>
+                    <div class="custom-select__opt" data-value="MA">MA</div><div class="custom-select__opt" data-value="MI">MI</div><div class="custom-select__opt" data-value="MN">MN</div><div class="custom-select__opt" data-value="MS">MS</div>
+                    <div class="custom-select__opt" data-value="MO">MO</div><div class="custom-select__opt" data-value="MT">MT</div><div class="custom-select__opt" data-value="NE">NE</div><div class="custom-select__opt" data-value="NV">NV</div>
+                    <div class="custom-select__opt" data-value="NH">NH</div><div class="custom-select__opt" data-value="NJ">NJ</div><div class="custom-select__opt" data-value="NM">NM</div><div class="custom-select__opt" data-value="NY">NY</div>
+                    <div class="custom-select__opt" data-value="NC">NC</div><div class="custom-select__opt" data-value="ND">ND</div><div class="custom-select__opt" data-value="OH">OH</div><div class="custom-select__opt" data-value="OK">OK</div>
+                    <div class="custom-select__opt" data-value="OR">OR</div><div class="custom-select__opt" data-value="PA">PA</div><div class="custom-select__opt" data-value="RI">RI</div><div class="custom-select__opt" data-value="SC">SC</div>
+                    <div class="custom-select__opt" data-value="SD">SD</div><div class="custom-select__opt" data-value="TN">TN</div><div class="custom-select__opt" data-value="TX">TX</div><div class="custom-select__opt" data-value="UT">UT</div>
+                    <div class="custom-select__opt" data-value="VT">VT</div><div class="custom-select__opt" data-value="VA">VA</div><div class="custom-select__opt" data-value="WA">WA</div><div class="custom-select__opt" data-value="WV">WV</div>
+                    <div class="custom-select__opt" data-value="WI">WI</div><div class="custom-select__opt" data-value="WY">WY</div>
+                  </div>
+                  <input type="hidden" id="state" name="state">
+                </div>
               </div>
 
               <div class="form-group">
@@ -200,6 +208,37 @@
         submitBtn.textContent = 'Send My Address';
       }
     });
+  </script>
+  <script>
+    (function () {
+      const wrap = document.getElementById('state-select');
+      const trigger = wrap.querySelector('.custom-select__trigger');
+      const valEl = wrap.querySelector('.custom-select__value');
+      const hidden = document.getElementById('state');
+      const opts = wrap.querySelectorAll('.custom-select__opt');
+
+      function openSel()  { wrap.classList.add('open');    trigger.setAttribute('aria-expanded', 'true'); }
+      function closeSel() { wrap.classList.remove('open'); trigger.setAttribute('aria-expanded', 'false'); }
+
+      trigger.addEventListener('click', () => wrap.classList.contains('open') ? closeSel() : openSel());
+      trigger.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); wrap.classList.contains('open') ? closeSel() : openSel(); }
+        if (e.key === 'Escape') closeSel();
+      });
+
+      opts.forEach(opt => {
+        opt.addEventListener('click', () => {
+          hidden.value = opt.dataset.value;
+          valEl.textContent = opt.dataset.value;
+          valEl.classList.add('has-value');
+          opts.forEach(o => o.classList.remove('selected'));
+          opt.classList.add('selected');
+          closeSel();
+        });
+      });
+
+      document.addEventListener('click', e => { if (!wrap.contains(e.target)) closeSel(); });
+    })();
   </script>
 </body>
 </html>
