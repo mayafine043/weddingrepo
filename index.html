@@ -21,11 +21,11 @@
             <div class="form-grid">
               <div class="form-group">
                 <label for="first_name">First Name</label>
-                <input type="text" id="first_name" placeholder="Jane" required>
+                <input type="text" id="first_name" placeholder="Jane">
               </div>
               <div class="form-group">
                 <label for="last_name">Last Name</label>
-                <input type="text" id="last_name" placeholder="Smith" required>
+                <input type="text" id="last_name" placeholder="Smith">
               </div>
             </div>
             <button type="submit" class="btn" id="login-btn">Enter</button>
@@ -52,7 +52,11 @@
       e.preventDefault();
       const first = document.getElementById('first_name').value.trim();
       const last = document.getElementById('last_name').value.trim();
-      if (!first || !last) { messageEl.style.display = 'block'; return; }
+
+      // Testing mode — skip validation, go straight to address page
+      sessionStorage.setItem('guestLoggedIn', 'true');
+      window.location.href = 'address.html';
+      return;
 
       loginBtn.disabled = true;
       loginBtn.textContent = 'Checking...';
