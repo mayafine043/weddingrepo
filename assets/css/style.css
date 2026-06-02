@@ -439,6 +439,13 @@ footer {
   position: relative;
 }
 
+.home-redesign .conf-panel .btn {
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
 /* "View Save the Date" is an <a> — force it to behave like the button */
 .home-redesign a.btn {
   display: block;
