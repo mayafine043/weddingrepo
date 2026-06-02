@@ -158,14 +158,17 @@
       const full = (g.first_name || '') + ' ' + (g.last_name || '');
       const subj = encodeURIComponent('Guest Address Update Request – ' + full);
       const body = encodeURIComponent(
+        'Hi Maya,\n\n' +
+        'I\'d like to update the following details on file for me:\n\n' +
         'Name: ' + full + '\n' +
-        'Street: ' + (g.street_address || '') + '\n' +
+        'Street Address: ' + (g.street_address || '') + '\n' +
         'City: ' + (g.city || '') + '\n' +
         'State: ' + (g.state || '') + '\n' +
-        'ZIP: ' + (g.zip || '') + '\n' +
-        'Phone: ' + (g.phone || '') + '\n' +
+        'Zip Code: ' + (g.zip || '') + '\n' +
+        'Phone Number: ' + (g.phone || '') + '\n' +
         'Email: ' + (g.email || '') + '\n\n' +
-        'Please update the following:\n'
+        'Please let me know what you need from me.\n\n' +
+        'Thank you'
       );
       window.location.href = 'mailto:mayafine043@gmail.com?subject=' + subj + '&body=' + body;
     });
