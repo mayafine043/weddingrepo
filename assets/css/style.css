@@ -1290,6 +1290,7 @@ footer {
   }
   .save-date-redesign .sd-lower {
     position: static;
+    margin-top: 60px;
   }
   .save-date-redesign .sd-couple {
     font-size: 33px;
