@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap');
 
 :root {
   --white: #ffffff;
@@ -129,6 +129,15 @@ select option { background: #2a2320; color: var(--white-soft); }
   -webkit-backdrop-filter: blur(2px);
 }
 
+.home-redesign .form-shade {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  padding: 0;
+}
+
 .btn {
   font-family: var(--font-body);
   font-size: 0.78rem;
@@ -238,7 +247,7 @@ footer {
   --mustard: #d4a43f;
   --line-dark: rgba(239, 233, 218, 0.3);
   --font-display: 'Cormorant Garamond', Georgia, serif;
-  --font-body: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'EB Garamond', Georgia, serif;
   background: #0a0f0b;
 }
 
@@ -254,8 +263,8 @@ footer {
 .home-redesign .bg::before {
   z-index: 0;
   background:
-    linear-gradient(90deg, rgba(8, 12, 9, 0.88) 0%, rgba(8, 12, 9, 0.62) 40%, rgba(8, 12, 9, 0.42) 100%),
-    linear-gradient(180deg, rgba(7, 12, 8, 0.55), rgba(7, 12, 8, 0.34) 40%, rgba(7, 12, 8, 0.72));
+    linear-gradient(180deg, rgba(7,12,8,.78), rgba(7,12,8,.52) 45%, rgba(7,12,8,.86)),
+    radial-gradient(120% 100% at 50% 40%, rgba(8,12,9,.3), rgba(8,12,9,.72) 82%);
 }
 
 .home-redesign .form-page {
@@ -536,7 +545,7 @@ footer {
   --mustard: #d4a43f;
   --line-dark: rgba(239, 233, 218, 0.3);
   --font-display: 'Cormorant Garamond', Georgia, serif;
-  --font-body: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'EB Garamond', Georgia, serif;
   background: #120b07;
 }
 
@@ -656,7 +665,7 @@ footer {
 
 .login-redesign .btn {
   width: 100%;
-  margin-top: 40px;
+  margin-top: 14px;
   padding: 22px 28px;
   font-family: var(--font-body);
   font-size: 15px;
@@ -688,7 +697,7 @@ footer {
   --mustard: #d4a43f;
   --line-dark: rgba(239, 233, 218, 0.3);
   --font-display: 'Cormorant Garamond', Georgia, serif;
-  --font-body: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'EB Garamond', Georgia, serif;
   background: #0b110c;
 }
 
@@ -869,6 +878,30 @@ footer {
 
 @keyframes sd-spin {
   to { transform: rotate(360deg); }
+}
+
+/* Progress dots — shared across all 3 flow pages */
+.flow-dots {
+  position: fixed;
+  bottom: 38px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 12px;
+  z-index: 20;
+  pointer-events: none;
+}
+.flow-dots i {
+  display: block;
+  width: 7px;
+  height: 7px;
+  border: 1px solid rgba(239, 233, 218, 0.3);
+  border-radius: 50%;
+  transform: rotate(45deg);
+}
+.flow-dots i.on {
+  background: #d4a43f;
+  border-color: #d4a43f;
 }
 
 @media (max-width: 1100px) {
