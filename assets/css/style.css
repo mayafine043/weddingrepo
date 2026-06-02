@@ -439,12 +439,21 @@ footer {
   position: relative;
 }
 
+/* "View Save the Date" is an <a> — force it to behave like the button */
+.home-redesign a.btn {
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  background: rgba(239, 233, 218, 0.08);
+}
+
+.home-redesign .btn {
+  background: rgba(239, 233, 218, 0.08);
+}
+
 .home-redesign .btn-secondary {
-  margin-top: 12px;
+  margin-top: 10px;
   opacity: 0.55;
-  font-size: 10px;
-  padding: 12px 28px;
-  letter-spacing: 0.22em;
 }
 
 .home-redesign .btn-secondary:hover:not(:disabled) {
