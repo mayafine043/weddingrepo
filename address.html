@@ -25,6 +25,7 @@
           </div>
 
           <div class="form-shade">
+          <p class="form-eyebrow">Please provide the best way to reach you</p>
           <form id="address-form" novalidate>
             <div class="form-grid">
 
@@ -100,11 +101,6 @@
           </div>
         </div>
 
-        <div id="success-container" class="success-message" style="display:none;">
-          <h2>Thank you!</h2>
-          <p>Ciao!</p>
-        </div>
-
       </div>
     </div>
   </div>
@@ -118,13 +114,20 @@
       window.location.replace('index.html');
     }
 
+    // Pre-fill name fields if already stored from login
+    (function () {
+      const stored = sessionStorage.getItem('guestData');
+      if (!stored) return;
+      const g = JSON.parse(stored);
+      if (g.first_name) document.getElementById('first_name').value = g.first_name;
+      if (g.last_name)  document.getElementById('last_name').value  = g.last_name;
+    })();
+
     const client = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
     const form = document.getElementById('address-form');
     const submitBtn = document.getElementById('submit-btn');
     const messageEl = document.getElementById('form-message');
-    const formContainer = document.getElementById('form-container');
-    const successContainer = document.getElementById('success-container');
 
     function showMessage(text, isError = false) {
       messageEl.textContent = text;
@@ -136,6 +139,13 @@
       e.preventDefault();
 
       const fields = ['first_name','last_name','street_address','city','state','zip','phone','email'];
+
+      // Required field validation
+      const missing = fields.filter(f => !document.getElementById(f).value.trim());
+      if (missing.length) {
+        showMessage('Please fill in all fields before submitting.', true);
+        return;
+      }
 
       const email = document.getElementById('email').value.trim();
       submitBtn.disabled = true;
@@ -183,17 +193,28 @@
 
         if (addrError) throw addrError;
 
-        // Insert submission log
+        // Insert submission log (best-effort — don't block on failure)
         const payload = {};
         fields.forEach(f => payload[f] = document.getElementById(f).value.trim());
-        await client.from('submissions').insert({
+        client.from('submissions').insert({
           guest_id: guest.id,
           form_name: 'address_collection',
           data: payload
-        });
+        }).then(({ error }) => { if (error) console.warn('submissions log failed:', error); });
 
-        sessionStorage.setItem('guestSubmittedAddress', 'true');
-        window.location.href = 'save-the-date.html';
+        sessionStorage.setItem('guestHasAddress', 'true');
+        sessionStorage.setItem('guestData', JSON.stringify({
+          first_name:     document.getElementById('first_name').value.trim(),
+          last_name:      document.getElementById('last_name').value.trim(),
+          email:          document.getElementById('email').value.trim(),
+          phone:          document.getElementById('phone').value.trim(),
+          street_address: document.getElementById('street_address').value.trim(),
+          city:           document.getElementById('city').value.trim(),
+          state:          document.getElementById('state').value,
+          zip:            document.getElementById('zip').value.trim(),
+          submitted_at:   new Date().toISOString()
+        }));
+        window.location.href = 'confirmed.html';
 
       } catch (err) {
         console.error(err);
