@@ -248,6 +248,7 @@ footer {
   background-image: url('../photos/Chateau%20Bright%20Outdoor.jpg');
   background-position: center 38%;
   background-size: cover;
+  background-attachment: scroll;
 }
 
 .home-redesign .bg::before {
@@ -453,6 +454,7 @@ footer {
   background-image: url('../redesign/export/assets/welcome-bg.png');
   background-position: center 38%;
   background-size: cover;
+  background-attachment: scroll;
 }
 
 .login-redesign .bg::before {
@@ -561,6 +563,7 @@ footer {
 }
 
 .login-redesign .btn {
+  width: 100%;
   margin-top: 40px;
   padding: 22px 28px;
   font-family: var(--font-body);
@@ -612,6 +615,7 @@ footer {
   background-image: url('../photos/Chateau%20Bright%20Outdoor.jpg');
   background-position: center 38%;
   background-size: cover;
+  background-attachment: scroll;
 }
 
 .save-date-redesign .sd-scrim {
@@ -773,4 +777,185 @@ footer {
 
 @keyframes sd-spin {
   to { transform: rotate(360deg); }
+}
+
+@media (max-width: 1100px) {
+  .home-redesign .form-page {
+    padding: 40px 32px;
+  }
+
+  .home-redesign .card {
+    align-items: flex-start;
+  }
+
+  .home-redesign .home-layout {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .home-redesign .site-title {
+    font-size: 64px;
+  }
+
+  .home-redesign .form-shade {
+    padding: 36px 32px;
+  }
+}
+
+@media (max-width: 900px) {
+  .login-redesign .form-page {
+    padding: 32px 20px;
+  }
+
+  .login-redesign .site-title {
+    font-size: 44px;
+    white-space: normal;
+  }
+
+  .login-redesign .site-subtitle {
+    font-size: 18px;
+    margin-bottom: 32px;
+  }
+
+  .login-redesign .form-grid {
+    gap: 20px;
+  }
+
+  .login-redesign #login-form {
+    width: 100%;
+  }
+
+  .save-date-redesign .sd-stage {
+    padding: 48px 24px;
+  }
+
+  .save-date-redesign .sd-year {
+    font-size: 240px;
+    top: 50%;
+  }
+
+  .save-date-redesign .sd-headline {
+    left: 24px;
+    top: 72px;
+  }
+
+  .save-date-redesign .sd-line {
+    font-size: 72px;
+  }
+
+  .save-date-redesign .sd-the {
+    font-size: 42px;
+  }
+
+  .save-date-redesign .sd-lower {
+    left: 24px;
+    bottom: 112px;
+    right: 24px;
+  }
+
+  .save-date-redesign .sd-couple {
+    font-size: 30px;
+  }
+
+  .save-date-redesign .sd-place {
+    font-size: 18px;
+  }
+
+  .save-date-redesign .sd-seal {
+    right: 16px;
+    bottom: 18px;
+    width: 240px;
+    height: 240px;
+  }
+
+  .save-date-redesign .sd-big {
+    font-size: 56px;
+  }
+
+  .save-date-redesign .sd-mo {
+    font-size: 24px;
+  }
+
+  .save-date-redesign .sd-sm {
+    font-size: 18px;
+    letter-spacing: 0.26em;
+  }
+}
+
+@media (max-width: 700px) {
+  .home-redesign .site-title {
+    font-size: 46px;
+  }
+
+  .home-redesign .site-subtitle {
+    font-size: 13px;
+    letter-spacing: 0.22em;
+  }
+
+  .home-redesign .form-shade {
+    padding: 28px 22px;
+  }
+
+  .home-redesign .form-grid {
+    gap: 18px 20px;
+  }
+
+  .home-redesign input,
+  .home-redesign select {
+    font-size: 20px;
+  }
+
+  .home-redesign .btn,
+  .login-redesign .btn {
+    width: 100%;
+  }
+
+  .login-redesign .site-title {
+    font-size: 38px;
+  }
+
+  .login-redesign .site-subtitle {
+    font-size: 16px;
+  }
+
+  .login-redesign input {
+    font-size: 20px;
+  }
+
+  .save-date-redesign .sd-year {
+    font-size: 160px;
+  }
+
+  .save-date-redesign .sd-line {
+    font-size: 50px;
+  }
+
+  .save-date-redesign .sd-the {
+    font-size: 32px;
+  }
+
+  .save-date-redesign .sd-couple {
+    font-size: 22px;
+  }
+
+  .save-date-redesign .sd-place {
+    font-size: 15px;
+  }
+
+  .save-date-redesign .sd-seal {
+    width: 180px;
+    height: 180px;
+  }
+
+  .save-date-redesign .sd-big {
+    font-size: 40px;
+  }
+
+  .save-date-redesign .sd-mo {
+    font-size: 18px;
+  }
+
+  .save-date-redesign .sd-sm {
+    font-size: 14px;
+  }
 }
