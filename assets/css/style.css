@@ -1191,27 +1191,27 @@ footer {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 72px 40px 84px;
+    padding: 96px 40px 96px;
     height: 100vh;
   }
   .save-date-redesign .sd-headline {
     position: static;
   }
   .save-date-redesign .sd-line {
-    font-size: 52px;
+    font-size: 26px;
   }
   .save-date-redesign .sd-the {
-    font-size: 30px;
+    font-size: 15px;
   }
   .save-date-redesign .sd-lower {
     position: static;
   }
   .save-date-redesign .sd-couple {
-    font-size: 26px;
+    font-size: 13px;
   }
   .save-date-redesign .sd-place {
-    font-size: 15px;
-    margin-top: 12px;
+    font-size: 8px;
+    margin-top: 8px;
   }
   .save-date-redesign .sd-seal {
     position: absolute;
