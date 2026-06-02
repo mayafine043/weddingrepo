@@ -648,6 +648,8 @@ footer {
   max-width: 640px;
   width: min(640px, 100%);
   text-align: center;
+  transform: scale(0.9);
+  transform-origin: center center;
 }
 
 .login-redesign .login-stage {
@@ -738,7 +740,7 @@ footer {
 
 .login-redesign .btn {
   width: 100%;
-  margin-top: 14px;
+  margin-top: 44px;
   padding: 22px 28px;
   font-family: var(--font-body);
   font-size: 15px;
