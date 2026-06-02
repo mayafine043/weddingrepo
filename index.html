@@ -63,25 +63,49 @@
       messageEl.style.display = 'none';
 
       try {
-        const { data } = await client
+        // Look up guest by name
+        const { data: guest } = await client
           .from('guests')
-          .select('id')
+          .select('id, first_name, last_name, email, phone')
           .ilike('first_name', first)
           .ilike('last_name', last)
           .maybeSingle();
 
-        if (data) {
+        if (guest) {
+          // Check for existing address (returning guest)
+          const { data: addr } = await client
+            .from('addresses')
+            .select('street_address, city, state, zip, submitted_at, created_at')
+            .eq('guest_id', guest.id)
+            .maybeSingle();
+
           sessionStorage.setItem('guestLoggedIn', 'true');
-          window.location.href = 'address.html';
+
+          if (addr) {
+            sessionStorage.setItem('guestHasAddress', 'true');
+            sessionStorage.setItem('guestData', JSON.stringify({
+              ...guest,
+              street_address: addr.street_address,
+              city: addr.city,
+              state: addr.state,
+              zip: addr.zip,
+              submitted_at: addr.submitted_at || addr.created_at
+            }));
+            window.location.href = 'confirmed.html';
+          } else {
+            sessionStorage.setItem('guestHasAddress', 'false');
+            sessionStorage.setItem('guestData', JSON.stringify(guest));
+            window.location.href = 'address.html';
+          }
         } else {
           messageEl.style.display = 'block';
           loginBtn.disabled = false;
-          loginBtn.textContent = 'Continue';
+          loginBtn.textContent = 'Enter';
         }
       } catch (err) {
         messageEl.style.display = 'block';
         loginBtn.disabled = false;
-        loginBtn.textContent = 'Continue';
+        loginBtn.textContent = 'Enter';
       }
     });
   </script>

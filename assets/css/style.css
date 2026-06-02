@@ -423,6 +423,42 @@ footer {
   opacity: 0.45;
 }
 
+/* ---- Confirmation page ---- */
+.home-redesign .conf-panel {
+  position: relative;
+}
+
+.home-redesign .confirmed-field {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--cream);
+  padding: 6px 0 12px;
+  border-bottom: 1px solid var(--line-dark);
+  min-height: 40px;
+  pointer-events: none;
+  cursor: default;
+  user-select: none;
+}
+
+.conf-stamp-wrap {
+  position: absolute;
+  bottom: -8px;
+  right: -8px;
+  pointer-events: none;
+  z-index: 5;
+}
+
+@media (max-width: 480px) {
+  .conf-stamp-wrap { display: none; }
+  .home-redesign .confirmed-field {
+    font-size: 19px;
+    padding: 5px 0 10px;
+    min-height: 36px;
+  }
+}
+
 /* Custom state dropdown */
 .home-redesign .custom-select {
   position: relative;
