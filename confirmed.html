@@ -156,19 +156,20 @@
     // "Need to change something?" → pre-filled mailto
     document.getElementById('change-btn').addEventListener('click', () => {
       const full = (g.first_name || '') + ' ' + (g.last_name || '');
-      const subj = encodeURIComponent('Guest Address Update Request – ' + full);
+      const subj = encodeURIComponent('Guest Contact Details Update Request – ' + full);
       const body = encodeURIComponent(
-        'Hi Maya,\n\n' +
-        'I\'d like to update the following details on file for me:\n\n' +
-        'Name: ' + full + '\n' +
-        'Street Address: ' + (g.street_address || '') + '\n' +
-        'City: ' + (g.city || '') + '\n' +
-        'State: ' + (g.state || '') + '\n' +
-        'Zip Code: ' + (g.zip || '') + '\n' +
-        'Phone Number: ' + (g.phone || '') + '\n' +
-        'Email: ' + (g.email || '') + '\n\n' +
+        'Hi Maya & Nick,\n\n' +
+        'I\'d like to update the contact details currently on file for me, please reference the following for the latest:\n\n' +
+        'Name: [' + full + ']\n' +
+        'Street Address: [' + (g.street_address || '') + ']\n' +
+        'City: [' + (g.city || '') + ']\n' +
+        'State: [' + (g.state || '') + ']\n' +
+        'Zip Code: [' + (g.zip || '') + ']\n' +
+        'Phone Number: [' + (g.phone || '') + ']\n' +
+        'Email: [' + (g.email || '') + ']\n\n' +
         'Please let me know what you need from me.\n\n' +
-        'Thank you'
+        'Thank you,\n' +
+        '[' + full + ']'
       );
       const a = document.createElement('a');
       a.href = 'mailto:mayafine043@gmail.com?subject=' + subj + '&body=' + body;
