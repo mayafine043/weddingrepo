@@ -1078,3 +1078,152 @@ footer {
     font-size: 14px;
   }
 }
+
+/* ============================================================
+   MOBILE — 480px and below
+   ============================================================ */
+@media (max-width: 480px) {
+
+  /* ---- LOGIN (index.html) ---- */
+  .login-redesign .form-page {
+    padding: 30px 20px;
+  }
+  .login-redesign .card {
+    width: 100%;
+    max-width: 100%;
+  }
+  .login-redesign .site-title {
+    font-size: 46px;
+    white-space: nowrap;
+  }
+  .login-redesign .title-rule {
+    width: 52px;
+    margin: 26px auto 22px;
+  }
+  .login-redesign .site-subtitle {
+    font-size: 16px;
+    margin: 0 0 38px;
+  }
+  .login-redesign .form-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .login-redesign input {
+    font-size: 19px;
+    padding: 5px 0 10px;
+  }
+  .login-redesign label {
+    font-size: 11.5px;
+    letter-spacing: 0.22em;
+  }
+  .login-redesign .btn {
+    margin-top: 10px;
+    padding: 18px;
+    font-size: 13px;
+    letter-spacing: 0.26em;
+  }
+
+  /* ---- ADDRESS (address.html) ---- */
+  .home-redesign .form-page {
+    padding: 0;
+    align-items: stretch;
+  }
+  .home-redesign .card {
+    max-width: 100%;
+    display: block;
+  }
+  .home-redesign .home-layout {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .home-redesign .site-header {
+    padding: 64px 30px 0;
+  }
+  .home-redesign .site-title {
+    font-size: 44px;
+    line-height: 0.98;
+  }
+  .home-redesign .title-rule {
+    width: 54px;
+    margin-top: 26px;
+  }
+  .home-redesign .site-subtitle {
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    margin-top: 18px;
+  }
+  .home-redesign .form-shade {
+    padding: 52px 30px 40px;
+  }
+  .home-redesign .form-grid {
+    gap: 22px 18px;
+  }
+  .home-redesign input,
+  .home-redesign select {
+    font-size: 19px;
+    padding: 5px 0 10px;
+  }
+  .home-redesign label {
+    font-size: 11.5px;
+    letter-spacing: 0.22em;
+  }
+  .home-redesign .btn {
+    margin-top: 8px;
+    padding: 18px;
+    font-size: 13px;
+    letter-spacing: 0.26em;
+  }
+  .home-redesign .custom-select__trigger {
+    font-size: 19px;
+    padding: 5px 0 10px;
+  }
+  .home-redesign .custom-select__opt {
+    font-size: 16px;
+    padding: 8px 14px;
+  }
+
+  /* ---- SAVE THE DATE (save-the-date.html) ---- */
+  .save-date-redesign .sd-year {
+    font-size: 300px;
+    top: 44%;
+  }
+  .save-date-redesign .sd-stage {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 60px 32px 70px;
+    height: 100vh;
+  }
+  .save-date-redesign .sd-headline {
+    position: static;
+  }
+  .save-date-redesign .sd-line {
+    font-size: 66px;
+  }
+  .save-date-redesign .sd-the {
+    font-size: 40px;
+  }
+  .save-date-redesign .sd-lower {
+    position: static;
+  }
+  .save-date-redesign .sd-couple {
+    font-size: 34px;
+  }
+  .save-date-redesign .sd-place {
+    font-size: 18px;
+    margin-top: 14px;
+  }
+  .save-date-redesign .sd-seal {
+    position: absolute;
+    left: 50%;
+    top: 44%;
+    right: auto;
+    transform: translateX(-50%);
+    width: 236px;
+    height: 236px;
+  }
+  .save-date-redesign .sd-big { font-size: 58px; }
+  .save-date-redesign .sd-mo { font-size: 22px; margin-top: 2px; }
+  .save-date-redesign .sd-sm { font-size: 15px; margin-top: 8px; letter-spacing: 0.32em; }
+  .save-date-redesign .sd-ring text { font-size: 11px; letter-spacing: 0.24em; }
+}
