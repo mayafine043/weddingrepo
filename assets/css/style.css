@@ -444,6 +444,14 @@ footer {
   padding-bottom: 11px;
 }
 
+.home-redesign .conf-panel a.btn {
+  margin-top: 40px;
+}
+
+.home-redesign .conf-panel .btn-secondary {
+  margin-top: 5px;
+}
+
 /* "View Save the Date" is an <a> — force it to behave like the button */
 .home-redesign a.btn {
   display: block;
@@ -864,7 +872,7 @@ footer {
 .save-date-redesign .sd-lower {
   position: absolute;
   left: 98px;
-  bottom: 118px;
+  bottom: 60px;
 }
 
 .save-date-redesign .sd-couple {
