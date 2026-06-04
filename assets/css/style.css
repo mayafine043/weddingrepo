@@ -1171,7 +1171,7 @@ footer {
 
   /* ---- LOGIN (index.html) ---- */
   .login-redesign .form-page {
-    padding: 30px 20px;
+    padding: 48px 32px;
   }
   .login-redesign .card {
     width: 100%;
@@ -1222,7 +1222,7 @@ footer {
     gap: 0;
   }
   .home-redesign .site-header {
-    padding: 96px 30px 0;
+    padding: 96px 44px 0;
   }
   .home-redesign .site-title {
     font-size: 44px;
@@ -1238,7 +1238,7 @@ footer {
     margin-top: 18px;
   }
   .home-redesign .form-shade {
-    padding: 80px 30px 40px;
+    padding: 80px 44px 64px;
   }
   .home-redesign .form-grid {
     gap: 22px 18px;
