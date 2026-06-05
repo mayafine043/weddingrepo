@@ -497,6 +497,7 @@ footer {
 
 @media (max-width: 480px) {
   .conf-stamp-wrap { display: block; }
+  .conf-stamp-wrap svg { width: 165px; height: 165px; }
   .home-redesign .confirmed-field {
     font-size: 19px;
     padding: 5px 0 10px;
@@ -1171,7 +1172,7 @@ footer {
 
   /* ---- LOGIN (index.html) ---- */
   .login-redesign .form-page {
-    padding: 48px 32px;
+    padding: 48px 44px;
   }
   .login-redesign .card {
     width: 100%;
