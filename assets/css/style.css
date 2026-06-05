@@ -496,8 +496,17 @@ footer {
 }
 
 @media (max-width: 480px) {
-  .conf-stamp-wrap { display: block; }
-  .conf-stamp-wrap svg { width: 165px; height: 165px; }
+  .conf-stamp-wrap {
+    display: block;
+    top: 45px;
+    right: auto;
+    left: 80px;
+  }
+  .conf-stamp-wrap svg { width: 248px; height: 248px; }
+
+  .home-redesign .conf-panel .btn-secondary {
+    margin-top: 10px;
+  }
   .home-redesign .confirmed-field {
     font-size: 19px;
     padding: 5px 0 10px;
