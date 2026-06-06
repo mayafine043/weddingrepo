@@ -498,9 +498,9 @@ footer {
 @media (max-width: 480px) {
   .conf-stamp-wrap {
     display: block;
-    top: -95px;
+    top: 45px;
     right: auto;
-    left: 80px;
+    left: 180px;
   }
   .conf-stamp-wrap svg { width: 165px; height: 165px; }
 
