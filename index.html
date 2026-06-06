@@ -108,7 +108,11 @@
 
         // New guest — no address on file yet
         sessionStorage.setItem('guestHasAddress', 'false');
-        if (guest) sessionStorage.setItem('guestData', JSON.stringify(guest));
+        if (guest) {
+          sessionStorage.setItem('guestData', JSON.stringify(guest));
+        } else {
+          sessionStorage.removeItem('guestData');
+        }
         window.location.href = 'address.html';
 
       } catch (err) {
