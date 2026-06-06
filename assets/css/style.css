@@ -973,7 +973,7 @@ footer {
 }
 
 @keyframes sd-spin {
-  to { transform: rotate(360deg); }
+  to { transform: rotate(-360deg); }
 }
 
 /* Progress dots — hidden */
