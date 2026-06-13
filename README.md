@@ -14,6 +14,10 @@ Your Supabase credentials are stored directly in `config.js` and committed to th
 
 Already created. Schema for reference:
 
+**guest_list** — the access control list (who is allowed to log in)
+- id, first_name, last_name, created_at
+- A name must exist here for that guest to get past the login page. Adding a row = granting someone access; removing one revokes it. This is separate from `guests` below, which only fills in once someone actually submits their details.
+
 **guests** — one row per person
 - id, first_name, last_name, email (unique), phone, created_at
 
@@ -29,13 +33,15 @@ To view submissions: Supabase dashboard → Table Editor → select table.
 
 ## 3. Swap the background photo
 
-1. Add your photo to `assets/photos/` and name it `wedding-bg.jpg`
-2. Commit and push — it will automatically appear as the background
+The site currently uses `assets/photos/Chateau de Thauvenay Outdoor.jpg`. To change it:
 
-To use a different filename, change this one line in `assets/css/style.css`:
+1. Add your new photo to `assets/photos/`
+2. Update this line in `assets/css/style.css` (line ~20) to point at the new filename:
 ```css
---bg-photo: url('../photos/wedding-bg.jpg');
+background-image: url('../photos/Chateau%20de%20Thauvenay%20Outdoor.jpg');
 ```
+   Spaces in filenames must be written as `%20`.
+3. Commit and push — the new background appears automatically.
 
 ---
 
