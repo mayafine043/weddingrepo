@@ -2,3 +2,7 @@
 node_modules
 **/.DS_Store
 assets/redesign 2/
+
+# Supabase CLI local cache (contains connection strings — do not commit)
+supabase/.temp
+supabase/.branches
