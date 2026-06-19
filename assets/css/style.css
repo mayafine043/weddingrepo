@@ -945,7 +945,7 @@ footer {
 
 .save-date-redesign .sd-big {
   font-family: var(--font-display);
-  font-size: 76px;
+  font-size: 56px;
   font-weight: 500;
   line-height: 0.9;
   letter-spacing: 0.02em;
@@ -954,9 +954,16 @@ footer {
   font-variant-numeric: lining-nums tabular-nums;
 }
 
+.save-date-redesign .sd-big sup {
+  font-size: 0.5em;
+  vertical-align: top;
+  line-height: 1;
+  letter-spacing: 0.01em;
+}
+
 .save-date-redesign .sd-mo {
-  margin-top: 4px;
-  font-size: 28px;
+  margin-bottom: 2px;
+  font-size: 50px;
   font-style: italic;
   color: var(--cream);
   opacity: 0.9;
@@ -965,7 +972,7 @@ footer {
 .save-date-redesign .sd-sm {
   margin-top: 8px;
   font-family: var(--font-body);
-  font-size: 20px;
+  font-size: 24px;
   color: var(--mustard);
   letter-spacing: 0.34em;
   text-transform: uppercase;
@@ -1083,15 +1090,15 @@ footer {
   }
 
   .save-date-redesign .sd-big {
-    font-size: 56px;
+    font-size: 44px;
   }
 
   .save-date-redesign .sd-mo {
-    font-size: 24px;
+    font-size: 40px;
   }
 
   .save-date-redesign .sd-sm {
-    font-size: 18px;
+    font-size: 21px;
     letter-spacing: 0.26em;
   }
 }
@@ -1162,15 +1169,15 @@ footer {
   }
 
   .save-date-redesign .sd-big {
-    font-size: 40px;
+    font-size: 32px;
   }
 
   .save-date-redesign .sd-mo {
-    font-size: 18px;
+    font-size: 31px;
   }
 
   .save-date-redesign .sd-sm {
-    font-size: 14px;
+    font-size: 16px;
   }
 }
 
@@ -1318,8 +1325,8 @@ footer {
     width: 236px;
     height: 236px;
   }
-  .save-date-redesign .sd-big { font-size: 58px; }
-  .save-date-redesign .sd-mo { font-size: 22px; margin-top: 2px; }
-  .save-date-redesign .sd-sm { font-size: 15px; margin-top: 8px; letter-spacing: 0.32em; }
+  .save-date-redesign .sd-big { font-size: 44px; }
+  .save-date-redesign .sd-mo { font-size: 38px; margin-bottom: 2px; }
+  .save-date-redesign .sd-sm { font-size: 18px; margin-top: 8px; letter-spacing: 0.32em; }
   .save-date-redesign .sd-ring text { font-size: 11px; letter-spacing: 0.24em; }
 }
